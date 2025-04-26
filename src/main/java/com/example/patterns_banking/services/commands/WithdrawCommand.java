@@ -1,6 +1,7 @@
 package com.example.patterns_banking.services.commands;
 
 import com.example.patterns_banking.models.Account;
+import com.example.patterns_banking.models.decorator.AccountWithdrawExtraDecorator;
 import com.example.patterns_banking.repositories.IAccountRepository;
 
 import java.util.Optional;
@@ -45,7 +46,8 @@ public class WithdrawCommand implements ICommand<Account> {
         }
 
         Account account = accountOpt.get();
-        account.withdraw(amount);
+        Account accountDec = new AccountWithdrawExtraDecorator(account);
+        accountDec.withdraw(amount);
 
         return accountRepository.save(account);
     }

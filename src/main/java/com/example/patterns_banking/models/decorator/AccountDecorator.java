@@ -14,15 +14,6 @@ import lombok.NoArgsConstructor;
 public abstract class AccountDecorator extends Account {
   private Account account;
 
-//  Crear un nuevo decorador para controlar qué tanto dinero se le puede prestar a una persona en un retiro
-//  LIMITE sobre retiros: 20.000
-//  Vamos a mostrar el valor excedido y vamos a dejar la cuenta en 0
-//  I: 50k
-//  W: 60k
-//  T: 70k
-//  Se hizo el retiro y el excedente fue de 10k
-//  La cuenta me queda vacíá
-
   @Override
   public Long getId() {
     return account.getId();
@@ -81,5 +72,10 @@ public abstract class AccountDecorator extends Account {
   @Override
   public void deposit(Double amount) {
     account.deposit(amount);
+  }
+
+  @Override
+  public double calculateLimitWithdrawal() {
+    return account.calculateLimitWithdrawal();
   }
 }
